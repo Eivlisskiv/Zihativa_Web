@@ -1,0 +1,12 @@
+{
+  "name": "neitsillia_se_app",
+  "displayName": "neitsillia_se_app",
+  "expo": {
+    "name": "neitsillia_se_app",
+    "slug": "neitsillia_se_app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
