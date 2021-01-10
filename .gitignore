@@ -5,7 +5,7 @@ yarn.lock
 
 ios/*
 android/*
-_test_/*
+__test__/*
 
 # OSX
 #
