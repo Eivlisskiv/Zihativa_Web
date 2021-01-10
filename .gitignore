@@ -1,4 +1,10 @@
 local/
+yarn.lock
+.gitattributes
+.buckconfig
+
+ios/*
+android/*
 
 # OSX
 #

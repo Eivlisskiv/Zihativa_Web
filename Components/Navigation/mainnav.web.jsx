@@ -1,5 +1,6 @@
 import BaseComponent from "./baseComponent"
 import { StyleSheet } from "react-native"
+import { Navigation } from "react-navigation"
 
 export default class Template extends BaseComponent {
 
