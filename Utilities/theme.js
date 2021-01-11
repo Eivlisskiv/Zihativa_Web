@@ -4,7 +4,7 @@ class ColorTheme{
     navbar = ""
     text = ""
     other = ""
-    constrast
+    contrast = ""
     input = {
         background: "",
         text: ""
@@ -32,7 +32,7 @@ class ColorTheme{
             background: "#666A86",
             text: "black"
         }
-        this.constrast = "#F9DBBD"
+        this.contrast = "#F9DBBD"
         this.other = "#363457"
     }
 }

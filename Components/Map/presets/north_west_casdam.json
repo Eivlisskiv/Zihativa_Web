@@ -1,0 +1,15 @@
+{
+    "location":{
+        "realm": "Neitsillia",
+        "continent": "Casdam Ilse",
+        "kingdom": "Central Casdam"
+    },
+    "image": "https://media.discordapp.net/attachments/731563736393056266/741466090869358642/Nort-West_Casdam.jpg",
+    "size": {
+        "width": 1149,
+        "height": 861
+    },
+    "nodes": [
+        { "area": "Atsauka", "x":370, "y":200 }
+    ]
+}

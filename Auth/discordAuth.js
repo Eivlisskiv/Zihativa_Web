@@ -1,4 +1,4 @@
-import { currentUrl, serverUrl } from "../Utilities/api_query"
+import { currentUrl, serverUrl } from "../Query/api_query"
 import querystring from "querystring"
 import axios from "axios"
 
@@ -51,11 +51,8 @@ class DiscordAuth{
     async user(token){
       console.log(token);
       const result = await axios.get(
-        serverUrl("api/login/discord/" + token)
-        //"https://discord.com/api/users/@me"
-        , {
-          mode: "no-cors",
-          
+        serverUrl("api/login/discord/" + token),{
+          //mode: "no-cors",
           headers: {
             //Authorization: `Bearer ${token}`,
             'Access-Control-Allow-Origin': "*",
