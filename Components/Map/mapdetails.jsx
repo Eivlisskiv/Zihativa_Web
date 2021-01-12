@@ -50,7 +50,6 @@ export default class MapDetails extends BaseComponent {
     render(){
         if(!this.state.data) return null;
         const area = this.state.data;
-        console.log(area);
         return (
             <View style={this.style.container}>
                 <Text style={this.textStyle(40, 15)}>{area.name}</Text>

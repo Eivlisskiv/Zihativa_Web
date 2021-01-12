@@ -9,7 +9,8 @@ const server = {
 var clientUrl;
 
 export function serverUrl(path = ""){
-    return `http://${server.ip}:${server.port}/${path}`;
+    return `https://cors-anywhere.herokuapp.com/` +
+        `http://${server.ip}:${server.port}/${path}`;
 }
 
 export function currentUrl(){
@@ -19,6 +20,7 @@ export function currentUrl(){
         if(i >= 0) url = url.substr(0, i)
         clientUrl = url;
     }
+    console.log(clientUrl);
     return clientUrl;
 }
 

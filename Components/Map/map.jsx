@@ -87,7 +87,7 @@ export default class Map extends BaseComponent {
         
         this.winConf.landscape = this.winConf.x > this.winConf.y;
 
-        return Math.min(this.winConf.x, this.winConf.y);
+        return Math.min(this.winConf.x, this.winConf.y, this.state.size.x, this.state.size.y);
     }
 
     render(){
