@@ -1,12 +1,15 @@
+import axios from "axios"
+
 const server = {
-    ip: "localhost",//"34.67.163.218",
-    port: "5001"
+    ip: //"localhost",
+        "34.67.163.218",
+    port: "5000"
 }
 
 var clientUrl;
 
 export function serverUrl(path = ""){
-    return `https://${server.ip}:${server.port}/${path}`;
+    return `http://${server.ip}:${server.port}/${path}`;
 }
 
 export function currentUrl(){
@@ -21,37 +24,28 @@ export function currentUrl(){
 
 export async function get_async(url, headers){
     headers = headers || { };
+
+    let reponse = await axios.get(url, {
+        headers        
+    });
+    return reponse;
+}
+
+export async function post_async(url, headers, body){
+    headers = headers || { };
     headers.Accept = 'application/json';
     headers['Access-Control-Allow-Origin'] = "*";
     headers['Content-Type'] = 'application/json'
     headers['Access-Control-Allow-Headers'] = "*"
-
-    let reponse = await fetch(url, {
-        method: 'GET',
-        mode: "no-cors",
-        headers        
-    });
-    console.log(response);
-    return await reponse.json();
-}
-
-export async function post_async(url, body){
     let reponse = await fetch(url, {
         method: 'POST',
         mode: "no-cors",
-        headers : {
-            Accept: 'application/json',
-            'Content-Type' : 'application/json',
-            'Access-Control-Allow-Origin': "*",
-            'Access-Control-Allow-Headers': "*"
-        },
+        headers,
         body: JSON.stringify(body) 
         
     });
-    return await reponse.json();
+    return reponse;
 }
-
-
 
 function queryUrl(table, params){
     const url = serverUrl("api/query/" + table)
@@ -69,7 +63,6 @@ function queryUrl(table, params){
 async function queryApiPost(table, query, fields){
     return await fetch(queryUrl(table, fields), {
         method: 'POST',
-        mode: "no-cors",
         headers:{
             //Authorazisation: auth,
             Accept: 'application/json',
@@ -77,16 +70,14 @@ async function queryApiPost(table, query, fields){
             'Access-Control-Allow-Origin': "*",
             'Access-Control-Allow-Headers': "*"
         },
-        body: JSON.stringify({query})
+        body: JSON.stringify(query)
     });
 }
 
 async function queryApiGet(table, query, fields){
     const url = queryUrl(table, {query, fields});
-    console.log(url);
     return await fetch(url, {
         method: 'GET',
-        mode: "no-cors",
         headers:{
             //Authorazisation: auth,
             Accept: 'application/json',
@@ -97,8 +88,8 @@ async function queryApiGet(table, query, fields){
     });
 }
 
-export async function getAreas(){
-    const response = await queryApiGet("Area");
-    console.log(response);
-    return await response.json();
+export async function getAreas(id){
+    const url = serverUrl("api/areas/" + id)
+    const response = await get_async(url)
+    return response.data;
 }

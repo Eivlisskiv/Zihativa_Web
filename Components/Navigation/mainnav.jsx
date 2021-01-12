@@ -30,7 +30,8 @@ export default class MainNavigation extends BaseComponent {
     render(){
         return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Login">
+            <Stack.Navigator initialRouteName="Home"
+                headerMode={"none"}>
 
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Login" component={Login} />

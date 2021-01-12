@@ -27,7 +27,9 @@ export default class Marker extends BaseComponent {
 
     render(){
         return (
-            <View style={this.style.container}>
+            <View style={this.style.container}
+                pointerEvents={"auto"}
+            >
                 <TouchableOpacity onPress={() => this.props.onPress(this.props.area)}>
                     <Image style={this.imageStyle(30)} source={icon}/>
                 </TouchableOpacity>

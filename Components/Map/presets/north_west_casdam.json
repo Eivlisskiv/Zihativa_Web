@@ -10,6 +10,11 @@
         "height": 861
     },
     "nodes": [
-        { "area": "Atsauka", "x":370, "y":200 }
+        { "area": "Atsauka", "x":300, "y":180 },
+        { "area": "Muzoisu", "x":370, "y":200 },
+        { "area": "Amethyst Gardens", "x":440, "y":280 },
+        { "area": "Keanute", "x":575, "y":390 },
+        { "area": "Peresa Forest", "x":440, "y":550 },
+        { "area": "Serene Cliffside", "x":73, "y":450 }
     ]
 }

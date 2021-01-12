@@ -1,6 +1,7 @@
 import BaseComponent from "../baseComponent"
 import React from "react"
-import { StyleSheet, ImageBackground, View } from "react-native"
+import { StyleSheet, ImageBackground, View, Dimensions, Image } from "react-native"
+import PanPanel from '../Panel/panel';
 
 import Marker from "./marker"
 import MapDetails from "./mapdetails"
@@ -12,24 +13,33 @@ export default class Map extends BaseComponent {
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: this.getColor("background"),
+            
         },
         container:{
-            flex: 'warp',
+            flex: 1,
+            flexWrap: "wrap",
+            flexDirection: "row",
+        },
+        mapcontainer:{
             justifyContent: 'center',
             alignItems: 'center',
-
             borderColor: this.getColor("other"),
-            borderWidth: 20,
+            borderWidth: 5,
             borderRadius: 20,
+
+            overflow: "hidden",
         },
     })
 
+    winConf = { }
     constructor(props){
         super(props)
         
         this.state = this.findPreset(this.props.preset) || {
 
         }
+
+        this.state.mapSize = { width:0, height:0}
     }
 
     findPreset(name){
@@ -51,8 +61,8 @@ export default class Map extends BaseComponent {
     onMarkerPress(name){
         if(!this.mapDetails) return;
 
-        const path = this.getPath(name);
-        this.mapDetails.setState({path});
+        //const path = this.getPath(name);
+        this.mapDetails.loadData(name);
     }
 
     imageStyle(rate = 1){
@@ -70,18 +80,38 @@ export default class Map extends BaseComponent {
         )
     }
 
+    getWindowSize(){
+        const win = Dimensions.get("window");
+        this.winConf.x = win.width;
+        this.winConf.y = win.height;
+        
+        this.winConf.landscape = this.winConf.x > this.winConf.y;
+
+        return Math.min(this.winConf.x, this.winConf.y);
+    }
+
     render(){
+        const frameSize = this.getWindowSize();
         return (
             <View style={this.style.background}>
-                <View style={this.style.container}>
-                    <ImageBackground
-                        style={this.imageStyle(1)}
-                        source={this.state.image}
-                    >
-                    {this.renderMarkers()}
-                    </ImageBackground>
+                <View style={/*[*/this.style.container/*,*/ 
+                    /*{flexDirection: this.winConf.landscape ? "row" : "column"}]*/}>
+                    <View style={[this.style.mapcontainer,
+                         {width:frameSize, height:frameSize} ]}>
+                        <PanPanel imageSize={this.state.size} frameSize={frameSize}>
+                            <ImageBackground
+                                style={this.imageStyle()}
+                                source={this.state.image}>
+                            {this.renderMarkers()}
+                            </ImageBackground>
+                        </PanPanel>
+                    </View>
+                    <MapDetails 
+                        style={{flex: 1, width:"100%"}}
+                        ref={c => this.mapDetails = c} 
+                        landscape={this.winConf.landscape}
+                    />
                 </View>
-                <MapDetails ref={c => this.mapDetails = c} />
             </View>
         )
     }

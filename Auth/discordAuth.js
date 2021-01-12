@@ -52,9 +52,7 @@ class DiscordAuth{
       console.log(token);
       const result = await axios.get(
         serverUrl("api/login/discord/" + token),{
-          //mode: "no-cors",
           headers: {
-            //Authorization: `Bearer ${token}`,
             'Access-Control-Allow-Origin': "*",
             'Access-Control-Allow-Headers': "*"
           },
