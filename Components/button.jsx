@@ -29,7 +29,13 @@ export default class Button extends BaseComponent{
 
     renderText(){
         return !this.props.title ? null :
-        <Text style={this.textStyle(this.state.fontSize)}>{this.props.title}</Text>
+        <Text style={{
+            fontSize:this.state.fontSize, 
+            color:this.getColor("button", 'text')
+        }}
+        >
+            {this.props.title}
+        </Text>
     }
 
     render(){

@@ -1,16 +1,13 @@
 import axios from "axios"
 
-const server = {
-    ip: //"localhost",
-        "34.67.163.218",
-    port: "5000"
-}
-
+const dev = false;
 var clientUrl;
 
 export function serverUrl(path = ""){
-    return `https://cors-anywhere.herokuapp.com/` +
-        `http://${server.ip}:${server.port}/${path}`;
+    return (dev ? "https://localhost:5001/"
+        : "https://api.zihativa.tk/") 
+        + path;
+            
 }
 
 export function currentUrl(){
@@ -91,7 +88,7 @@ async function queryApiGet(table, query, fields){
 }
 
 export async function getAreas(id){
-    const url = serverUrl("api/areas/" + id)
+    const url = serverUrl(`api/areas/${id.replace(/\\/g, ';')}`)
     const response = await get_async(url)
     return response.data;
 }

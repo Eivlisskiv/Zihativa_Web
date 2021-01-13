@@ -22,18 +22,18 @@ class ColorTheme{
     default(){
         this.background = "#01161E"
         this.navbar = '#282c34'
-        this.text = "#eeeeee"
+        this.text = "black"
         this.input = { 
             background: "#95B8D1",
             text: "black"
         }
 
         this.button = { 
-            background: "#666A86",
+            background: "#FFA900",
             text: "black"
         }
-        this.contrast = "#F9DBBD"
-        this.other = "#363457"
+        this.contrast = "#111d5e"
+        this.other = "#FFA900"
     }
 }
 const theme = new ColorTheme();

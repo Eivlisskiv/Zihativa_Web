@@ -7,8 +7,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from "../Home/home.jsx"
 import Login from "../Login/login"
+import AreaDetail from "../AreaDetails";
 
 const Stack = createStackNavigator();
+const _navigator = React.createRef();
+
+export function navigate(name, props) {
+    _navigator.current.navigate(name, props);
+}
+
 export default class MainNavigation extends BaseComponent {
 
     style = StyleSheet.create({
@@ -16,8 +23,7 @@ export default class MainNavigation extends BaseComponent {
             backgroundColor: this.getColor("background")
         }
     })
-
-    
+   
 
     constructor(props){
         super(props)
@@ -29,11 +35,12 @@ export default class MainNavigation extends BaseComponent {
 
     render(){
         return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home"
+        <NavigationContainer ref={_navigator}>
+            <Stack.Navigator initialRouteName="Map"
                 headerMode={"none"}>
 
-                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="Map" component={Home} />
+                <Stack.Screen name="Area" component={AreaDetail} />
                 <Stack.Screen name="Login" component={Login} />
             </Stack.Navigator>
         </NavigationContainer>

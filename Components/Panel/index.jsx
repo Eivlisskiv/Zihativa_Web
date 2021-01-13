@@ -35,11 +35,9 @@ export default class PanPanel extends React.Component {
           x: 0,
           y: 0
         }
-        console.log(img)
-        console.log(frame)
         if(img && frame){
-          this.state.x = (img.width / 2) - (frame/2);
-          this.state.y = (img.height / 2) - (frame /2);
+          this.state.x = (img.width / 2) - (frame.x /2);
+          this.state.y = (img.height / 2) - (frame.y /2);
         }
         //x = 107.25
     }

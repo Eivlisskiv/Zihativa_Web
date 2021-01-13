@@ -1,20 +1,14 @@
 import BaseComponent from "../baseComponent"
 import React from "react"
 import { StyleSheet, ImageBackground, View, Dimensions, Image } from "react-native"
-import PanPanel from '../Panel/panel';
-
+import PanPanel from '../Panel';
+import Background from "../Background"
 import Marker from "./marker"
 import MapDetails from "./mapdetails"
 
 export default class Map extends BaseComponent {
 
     style = StyleSheet.create({
-        background: {
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: this.getColor("background"),
-            
-        },
         container:{
             flex: 1,
             flexWrap: "wrap",
@@ -61,8 +55,8 @@ export default class Map extends BaseComponent {
     onMarkerPress(name){
         if(!this.mapDetails) return;
 
-        //const path = this.getPath(name);
-        this.mapDetails.loadData(name);
+        const path = this.getPath(name);
+        this.mapDetails.loadData(path);
     }
 
     imageStyle(rate = 1){
@@ -83,21 +77,24 @@ export default class Map extends BaseComponent {
     getWindowSize(){
         const win = Dimensions.get("window");
         this.winConf.x = win.width;
-        this.winConf.y = win.height;
+        this.winConf.y = win.height - 50;
         
-        this.winConf.landscape = this.winConf.x > this.winConf.y;
-
-        return Math.min(this.winConf.x, this.winConf.y, this.state.size.x, this.state.size.y);
+        const landscape =this.winConf.x > this.winConf.y;
+        this.winConf.landscape = landscape;
+        const q = Math.min(this.winConf.x, this.winConf.y, this.state.size.width, this.state.size.height)
+        return{
+            x: (landscape ? Math.min(q, this.winConf.x / 2) : q),
+            y: !landscape ? Math.min(q, this.winConf.y /2) : q,
+        }
     }
 
     render(){
         const frameSize = this.getWindowSize();
         return (
-            <View style={this.style.background}>
-                <View style={/*[*/this.style.container/*,*/ 
-                    /*{flexDirection: this.winConf.landscape ? "row" : "column"}]*/}>
+            <Background>
+                <View style={ this.style.container }>
                     <View style={[this.style.mapcontainer,
-                         {width:frameSize, height:frameSize} ]}>
+                         {width:frameSize.x, height:frameSize.y} ]}>
                         <PanPanel imageSize={this.state.size} frameSize={frameSize}>
                             <ImageBackground
                                 style={this.imageStyle()}
@@ -112,7 +109,7 @@ export default class Map extends BaseComponent {
                         landscape={this.winConf.landscape}
                     />
                 </View>
-            </View>
+            </Background>
         )
     }
 }

@@ -15,6 +15,8 @@
         { "area": "Amethyst Gardens", "x":440, "y":280 },
         { "area": "Keanute", "x":575, "y":390 },
         { "area": "Peresa Forest", "x":440, "y":550 },
-        { "area": "Serene Cliffside", "x":73, "y":450 }
+        { "area": "Serene Cliffside", "x":73, "y":450 }, 
+        { "area": "Southern Peresa Camp", "x":420, "y":690 },
+        { "area": "Fifth Overturned Tower", "x":600, "y":180 }
     ]
 }
