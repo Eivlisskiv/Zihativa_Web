@@ -1,6 +1,8 @@
 import BaseComponent from "../baseComponent"
 import React from "react"
 import { StyleSheet, View, Text } from "react-native"
+import { navigate } from "../Navigation"
+import { getById } from "../../Query/api_query"
 
 export default class LootInfo extends BaseComponent {
 
@@ -18,6 +20,7 @@ export default class LootInfo extends BaseComponent {
             textDecorationLine: 'underline', 
         },
         itemText:{
+            flex:1,
             fontStyle: 'italic'
         }
     })
@@ -28,6 +31,11 @@ export default class LootInfo extends BaseComponent {
         this.state = {
             title: this.props.title || 'Unamed'
         }
+    }
+
+    async inspectItem(id){
+        const data = await getById(this.state.title, id);
+        navigate(this.state.title, { data: data })
     }
 
     render(){
@@ -43,6 +51,7 @@ export default class LootInfo extends BaseComponent {
                         array.map(v => 
                             <Text key={v}
                             style={this.textStyle(18)}
+                            onPress={() => this.inspectItem(v)}
                             >{v}</Text> 
                         ) 
                     }  

@@ -1,6 +1,9 @@
 import BaseComponent from "../baseComponent"
 import React from "react"
 import { StyleSheet, View, Text } from "react-native"
+import { navigate } from "../Navigation"
+import { getById } from "../../Query/api_query"
+import HyperLinkText from "../HyperLinkText"
 
 export default class JunctionsInfo extends BaseComponent {
 
@@ -12,15 +15,21 @@ export default class JunctionsInfo extends BaseComponent {
         super(props)
     }
 
+    async onPress(junction){
+        const data = await getById("Areas", junction.filePath);
+        navigate("Area", {data});
+    }
+
     render(){
         const junctions = this.props.junctions;
         return (
             <View>
                 {
                     junctions?.map(obj => 
-                        <Text key={obj.destination}
-                            style={this.textStyle(20)}
-                        >{obj.destination}</Text>    
+                        <HyperLinkText key={obj.destination}
+                            style={[this.textStyle(20),{flexWrap:"wrap", flex:1}]}
+                            onPress={() => this.onPress(obj) }
+                        >{obj.destination}</HyperLinkText>    
                     ) || 
                     <Text style={this.textStyle(20)}>
                     No Junctions</Text>  

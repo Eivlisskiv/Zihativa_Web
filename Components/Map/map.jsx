@@ -11,8 +11,8 @@ export default class Map extends BaseComponent {
     style = StyleSheet.create({
         container:{
             flex: 1,
-            flexWrap: "wrap",
             flexDirection: "row",
+            width:"100%"
         },
         mapcontainer:{
             justifyContent: 'center',
@@ -83,18 +83,18 @@ export default class Map extends BaseComponent {
         this.winConf.landscape = landscape;
         const q = Math.min(this.winConf.x, this.winConf.y, this.state.size.width, this.state.size.height)
         return{
-            x: (landscape ? Math.min(q, this.winConf.x / 2) : q),
+            x: landscape ? Math.min(q, this.winConf.x / 2) : q,
             y: !landscape ? Math.min(q, this.winConf.y /2) : q,
         }
     }
 
     render(){
         const frameSize = this.getWindowSize();
+        const deetsHeight = this.winConf.landscape ? frameSize.y : "100%";
         return (
             <Background>
-                <View style={ this.style.container }>
-                    <View style={[this.style.mapcontainer,
-                         {width:frameSize.x, height:frameSize.y} ]}>
+                <View style={[this.style.container, {height:deetsHeight}]}>
+                    <View style={[this.style.mapcontainer, {width:frameSize.x, height:frameSize.y} ]}>
                         <PanPanel imageSize={this.state.size} frameSize={frameSize}>
                             <ImageBackground
                                 style={this.imageStyle()}
@@ -104,8 +104,9 @@ export default class Map extends BaseComponent {
                         </PanPanel>
                     </View>
                     <MapDetails 
-                        style={{flex: 1, width:"100%"}}
+                        style={{width:"100%", height:deetsHeight}}
                         ref={c => this.mapDetails = c} 
+                        height={deetsHeight}
                         landscape={this.winConf.landscape}
                     />
                 </View>

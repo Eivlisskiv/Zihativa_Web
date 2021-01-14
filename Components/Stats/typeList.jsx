@@ -1,8 +1,8 @@
-import BaseComponent from "./baseComponent"
+import BaseComponent from "../baseComponent"
 import React from "react"
 import { StyleSheet } from "react-native"
 
-export default class Template extends BaseComponent {
+export default class StatsTypeList extends BaseComponent {
 
     style = StyleSheet.create({
 

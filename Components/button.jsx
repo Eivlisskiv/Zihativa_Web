@@ -40,7 +40,7 @@ export default class Button extends BaseComponent{
 
     render(){
         return (
-                <View style={{alignItems:'center'}}>
+                <View style={[{alignItems:'center'}, this.props.styles]}>
                     <TouchableOpacity style={this.buttonStyle()} onPress={this.props.onPress}>
                     {this.renderIcon()}
                     {this.renderText()}

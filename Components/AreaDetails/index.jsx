@@ -1,19 +1,24 @@
 import BaseComponent from "../baseComponent"
 import React from "react"
-import { StyleSheet, View, ImageBackground, Text } from "react-native"
+import { StyleSheet, View } from "react-native"
 import Background from "../Background"
 import GeneralInfo from "./generalInfo"
 import TabContainer from "../TabContainer"
 import JunctionsInfo from "./junctions"
-import TieredList from "./tieredItems"
+import TieredList from "../TieredList"
 
-const parchemin = require("../../assets/parchemin.png")
+import Parchemin from "../Background/parchemin"
 
 export default class AreaDetail extends BaseComponent {
 
     style = StyleSheet.create({
-        general:{
-
+        container:{
+            width:"90%",  
+            height:"100%",
+            flexDirection:"column",
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: "center",
         }
     })
 
@@ -26,10 +31,10 @@ export default class AreaDetail extends BaseComponent {
 
     textStyle(s, m){
         return {
-            fontSize: s + (this.state.landscape ? 5 : 0),
+            fontSize: s,
             marginLeft: 10,
             marginRight: 5,
-            marginVertical: m + (this.state.landscape ? 5 : -5),
+            marginVertical: m,
             color: 'black',
         }
     }
@@ -46,22 +51,23 @@ export default class AreaDetail extends BaseComponent {
         if(!area) return null;
         return (
             <Background>
-                <View  style={{width:"90%",height:"95%"}}>
-                <ImageBackground 
-                    style={{width:"100%",height:"100%"}}
-                    source={parchemin}>
-                    <GeneralInfo 
-                    data={this.state.data} />
-                    <TabContainer
-                        tabs={["Junctions","Item Drops", "Creatures"]}
-                        color={this.getColor("contrast")}
-                        secondaryColor={this.getColor("other")}
-                    >
-                        <JunctionsInfo junctions={area.junctions} />
-                        <TieredList items={area.loot} title="Item" />
-                        <TieredList items={area.mobs} title="Creature" />
-                    </TabContainer>
-                </ImageBackground>
+                <View style={this.style.container}>
+                    <Parchemin>
+                        <GeneralInfo 
+                            style={{flex:2}}
+                            textSize={10}
+                            data={this.state.data} />
+                        <TabContainer
+                            style={{flex:4}}
+                            tabs={["Junctions","Item Drops", "Creatures"]}
+                            color={this.getColor("contrast")}
+                            secondaryColor={this.getColor("other")}
+                        >
+                            <JunctionsInfo junctions={area.junctions} />
+                            <TieredList items={area.loot} title="Item" />
+                            <TieredList items={area.mobs} title="Creature" />
+                        </TabContainer>
+                    </Parchemin>
                 </View>
             </Background>
         )

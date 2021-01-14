@@ -16,22 +16,21 @@ export default class TabContainer extends React.Component {
 
         this.style = StyleSheet.create({
             container: {
-                flexWrap: "wrap",
                 margin: 10,
             },
-            content:{
-                flexWrap: "wrap",
-                margin: 5,
-            },
+            
             childBasket:{
-                flexWrap: "wrap",
-    
                 borderWidth: 5,
                 borderBottomRightRadius: 12,
                 borderBottomLeftRadius: 12,
                 borderColor: this.state.color,
                 marginBottom: 10,
-            }
+            },
+
+            content:{
+                width:"100%",height:"100%",
+                margin: 5,
+            },
         })
     }
 
