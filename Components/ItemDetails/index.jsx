@@ -31,7 +31,7 @@ export default class ItemDetail extends BaseComponent {
 
     render(){
         const data = this.state.data;
-        console.log(data);
+        if(!data) return null;
         return (
             <Background>
                 <Parchemin>

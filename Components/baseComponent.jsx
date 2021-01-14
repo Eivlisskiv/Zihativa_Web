@@ -55,16 +55,16 @@ export default class BaseComponent extends React.Component{
         : theme[a]) || "white";
     }
 
-    textStyle(size){
-        size = size || 18
+    textStyle(size=18){
         return {
             color: theme.text,
             fontSize: size,
         }
     }
 
-    inputStyle(margin=5){
+    inputStyle(margin=5, fontSize=18){
         return {
+            fontSize,
             color: theme.input.text,
             backgroundColor: theme.input.background,
             marginTop: margin,

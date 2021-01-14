@@ -1,9 +1,9 @@
 import BaseComponent from "../baseComponent"
 import React from "react"
 import { StyleSheet, View, Text } from "react-native"
-import { itemStats, getDamageType } from "../../Utilities/stats"
+import { charStats as stats, getDamageType } from "../../Utilities/stats"
 
-export default class ItemStats extends BaseComponent {
+export default class MobStats extends BaseComponent {
 
     style = StyleSheet.create({
         columns:{
@@ -24,7 +24,7 @@ export default class ItemStats extends BaseComponent {
         super(props)
 
         this.state = {
-            item: props.item
+            data: props.data
         }
     }
 
@@ -51,20 +51,24 @@ export default class ItemStats extends BaseComponent {
     }
 
     render(){
-        const item = this.state.item;
+        const data = this.state.data;
         return (
             <View style={this.style.rows}>
                 <View>
+                    <Text style={this.style.title}>Main Stats</Text>
+                    {this.renderStats(data, stats.main)}
+                </View>
+                <View>
                     <Text style={this.style.title}>Base Stats</Text>
-                    {this.renderStats(item, itemStats.base)}
+                    {this.renderStats(data, stats.base)}
                 </View>
                 <View>
                 <Text style={this.style.title}>Damages</Text>
-                    {this.renderDamageTypes(item.damage)}
+                    {this.renderDamageTypes(data.damage)}
                 </View>
                 <View>
                 <Text style={this.style.title}>Resistances</Text>
-                    {this.renderDamageTypes(item.resistance)}
+                    {this.renderDamageTypes(data.resistance)}
                 </View>
             </View>
         )

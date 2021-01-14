@@ -3,6 +3,9 @@ import React from "react"
 import { StyleSheet, View, Text } from "react-native"
 import Background from "../Background"
 import Parchemin from "../Background/parchemin"
+import TabContainer from "../TabContainer"
+import TieredList from "../TieredList"
+import MobStats from "./mobStats"
 
 export default class CreatureDetail extends BaseComponent {
 
@@ -20,14 +23,15 @@ export default class CreatureDetail extends BaseComponent {
 
     render(){
         const data = this.state.data;
-        if(!data) return(
+        if(!data) return (
         <Background>
             <Parchemin>
-                <Text>There was an erro getting the data from the server</Text>
+                <Text>There was an error getting the data from the server</Text>
             </Parchemin>
-        </Background>)
+        </Background>
+        )
         
-        //console.log(data);
+        if(!data) return null;
         return (
             <Background>
                 <Parchemin>
@@ -40,6 +44,14 @@ export default class CreatureDetail extends BaseComponent {
                         </View>
                         <Text style={[this.textStyle(18), this.style.description]}>{data.desc}</Text>
                     </View>
+                    <TabContainer
+                        tabs={["Stats", "Drops"]}
+                        color={this.getColor("contrast")}
+                        secondaryColor={this.getColor("other")}
+                    >
+                        <MobStats data={data.stats} />
+                        <TieredList title="Item" items={data.drops} />
+                    </TabContainer>
                 </Parchemin>
             </Background>
         )

@@ -25,7 +25,8 @@ export default class ItemRecipe extends BaseComponent {
 
     async onPress(name){
         const data = await getById("Item", name)
-        navigate("Item", {data})
+        if(data)
+            navigate("Item", {data})
     }
 
     render(){
@@ -40,7 +41,7 @@ export default class ItemRecipe extends BaseComponent {
                     <View key={name} style={{flexDirection:"row"}}>
                         <Text>{a}x </Text>
                         <HyperLinkText
-                            onPress={() => this.onPress(name)}
+                            onPress={() => this.onPress(n)}
                         >{n}</HyperLinkText>
                     </View>
                     }

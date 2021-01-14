@@ -35,7 +35,8 @@ export default class LootInfo extends BaseComponent {
 
     async inspectItem(id){
         const data = await getById(this.state.title, id);
-        navigate(this.state.title, { data: data })
+        if(data)
+            navigate(this.state.title, { data: data })
     }
 
     render(){

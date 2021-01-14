@@ -25,14 +25,6 @@ export default class HyperLinkText extends React.Component {
         }
     }
 
-    hyperlink(){
-        this.setState({
-            style:{
-
-            }
-        })
-    }
-
     render(){
         return (
             <TouchableOpacity

@@ -19,37 +19,35 @@ export default class GeneralInfo extends BaseComponent {
             this.setState({data: this.props.data})
     }
 
-    textStyle(s, m, f){
+    textStyle(s, m){
         return {
             fontSize: s * (this.state.landscape ? this.state.textSize : 1),
-            marginLeft: 10,
-            marginRight: 5,
-            marginVertical: m + (this.state.landscape ? 0 : -10),
+            marginLeft: 3,
+            marginRight: 3,
+            marginVertical: m + (this.state.landscape ? 0 : -m/2),
             color: 'black',
-            flex: f,
         }
     }
 
     paragraphStyle(){
-        const style = this.textStyle(20, 20)
+        const style = this.textStyle(18, 8)
         style.textAlign = "justify"
-        style.flex = 1;
         return style;
     }
 
     render(){
         const area = this.state.data;
         return (
-            <>
-            <Text style={[this.textStyle(35, 15, 1), {flex:1}]}>{area.name}</Text>
-            <View style={{flex:5}}>
-                <Text style={this.textStyle(20, 12, 1)}>{getAreaType(area.type)} Level {area.level}</Text>
-                 <Text style={this.textStyle(15, 12, 1)}>
+            <View>
+            <Text style={this.textStyle(35, 8)}>{area.name}</Text>
+            <View style={{margin:5}}>
+                <Text style={this.textStyle(20, 8)}>{getAreaType(area.type)} Level {area.level}</Text>
+                 <Text style={this.textStyle(15, 8)}>
                     {`${area.realm}, ${area.continent}, ${area.kingdom}`}
                 </Text>
             <Text style={this.paragraphStyle()}>{area.description}</Text>
             </View>
-            </>
+            </View>
         )
     }
 }

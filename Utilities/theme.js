@@ -24,8 +24,8 @@ class ColorTheme{
         this.navbar = '#282c34'
         this.text = "black"
         this.input = { 
-            background: "#95B8D1",
-            text: "black"
+            background: "#FFA900",
+            text: "#282c34"
         }
 
         this.button = { 

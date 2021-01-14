@@ -11,6 +11,7 @@ import Login from "../Login/login"
 import AreaDetail from "../AreaDetails";
 import ItemDetail from "../ItemDetails";
 import CreatureDetail from "../CreatureDetails";
+import SearchView from "../SearchView";
 
 const Stack = createStackNavigator();
 const _navigator = React.createRef();
@@ -52,6 +53,8 @@ export default class MainNavigation extends BaseComponent {
                 <Stack.Screen name="Area" component={AreaDetail} />
                 <Stack.Screen name="Item" component={ItemDetail} />
                 <Stack.Screen name="Creature" component={CreatureDetail} />
+
+                <Stack.Screen name="Search" component={SearchView} />
             </Stack.Navigator>
         </NavigationContainer>
         )

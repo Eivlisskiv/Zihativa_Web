@@ -46,7 +46,7 @@ export default class MapDetails extends BaseComponent {
         return (
             <Parchemin>
                  <GeneralInfo 
-                    textSize={20}
+                    textSize={15}
                     data={this.state.data}/>
                  <Button title={"More Info"}
                         style={{flex:1}}

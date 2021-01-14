@@ -41,6 +41,9 @@ export default class Navbar extends BaseComponent {
                     <Button title="Map" 
                         onPress={() => navigate("Map")}
                     />
+                    <Button title="Search" 
+                        onPress={() => navigate("Search")}
+                    />
                 </View>
                 <View/>
                 {/*<Button style={{hidden}}
