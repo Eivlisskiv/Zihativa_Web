@@ -65,10 +65,10 @@ export default class Template extends BaseComponent {
         try{
             if(!this.searchText) return;
             const data = await getById(this.selectedTable, this.searchText);
-            this.setState({searchResult: { 
-                table: this.selectedTable,
-                items: [data],
-            }})
+            this.setState({searchResult: data ? { 
+                    table: this.selectedTable,
+                    items: [data],
+                } : null})
             return;
         }catch(e){ }
 
