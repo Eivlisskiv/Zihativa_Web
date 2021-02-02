@@ -1,5 +1,6 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
+import { ScrollView } from "react-native-gesture-handler"
 import Button from "./tabButton"
 
 export default class TabContainer extends React.Component {
@@ -16,10 +17,21 @@ export default class TabContainer extends React.Component {
 
         this.style = StyleSheet.create({
             container: {
-                margin: 10,
+                display:"flex",
+                position:"relative",
+                width:"100%",
+                flexDirection:"column",
+                justifyContent:"center",
+                alignItems:"center",
             },
             
             childBasket:{
+                display:"flex",
+                position:"relative",
+                justifyContent:"center",
+                alignContent:"center",
+                alignItems:"center",
+                width:"100%",
                 borderWidth: 5,
                 borderBottomRightRadius: 12,
                 borderBottomLeftRadius: 12,
@@ -28,7 +40,12 @@ export default class TabContainer extends React.Component {
             },
 
             content:{
-                width:"100%",height:"100%",
+                display:"flex",
+                position:"relative",
+                width:"100%", height:"100%",
+                justifyContent:"center",
+                alignContent:"center",
+                alignItems:"center",
                 margin: 5,
             },
         })
@@ -36,7 +53,7 @@ export default class TabContainer extends React.Component {
 
     renderTabs(){
         return (
-            <View style={{flexDirection:"row"}}>
+            <View style={{flexDirection:"row", justifyContent:"flex-start", width:"100%"}}>
             {this.state.tabs.map((name, key) =>
                     <Button key={key} title={name || "Unammed Tab"} 
                         onPress={() => this.setState({ index: key })}

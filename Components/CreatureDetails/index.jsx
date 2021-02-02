@@ -1,6 +1,6 @@
 import BaseComponent from "../baseComponent"
 import React from "react"
-import { StyleSheet, View, Text } from "react-native"
+import { StyleSheet, ScrollView, View, Text } from "react-native"
 import Background from "../Background"
 import Parchemin from "../Background/parchemin"
 import TabContainer from "../TabContainer"
@@ -10,7 +10,30 @@ import MobStats from "./mobStats"
 export default class CreatureDetail extends BaseComponent {
 
     style = StyleSheet.create({
-
+        container:{
+            height:"100%",
+            display:"flex", 
+            flexDirection:"column", 
+            flexWrap:"wrap",
+            padding:5,
+        },
+        details:{
+            display:"flex", 
+            flexDirection:"column", 
+            flexWrap:"wrap",
+            padding:5, 
+            justifyContent:"space-around"
+        },
+        extraDeets:{
+            display:"flex", 
+            flexDirection:"row",
+             flexWrap:"wrap", 
+             marginVertical:8, 
+             justifyContent:"space-evenly"
+        },
+        description:{
+            margin:5,
+        }
     })
 
     constructor(props){
@@ -35,23 +58,35 @@ export default class CreatureDetail extends BaseComponent {
         return (
             <Background>
                 <Parchemin>
-                    <View>
-                        <Text style={[this.textStyle(20), this.style.title]}>{data.name}</Text>
-                        <View style={{flexDirection:"row"}}>
-                            <Text style={[this.textStyle(15), this.style.description]}>
-                                Base Level: {data.baseLevel}  -  Race: {data.race}  -  Xp Drop Multiplier: {data.xpDropBuff}x
-                            </Text>
+                    <ScrollView>
+                    <View style={this.style.container}>
+                        <View style={this.style.details}>
+                            <Text style={[this.textStyle(20), this.style.title]}>{data.name}</Text>
+                            <View style={this.style.extraDeets}>
+                                <Text style={this.textStyle(15)}>
+                                    Base Level: {data.baseLevel}
+                                </Text> 
+                                <Text style={this.textStyle(15)}> 
+                                    Race: {data.race} 
+                                </Text>
+                                <Text style={this.textStyle(15)}>
+                                    Xp Drop Multiplier: {data.xpDropBuff}x
+                                </Text>
+                            </View>
+                            <Text style={this.textStyle(18)}>{data.desc}</Text>
                         </View>
-                        <Text style={[this.textStyle(18), this.style.description]}>{data.desc}</Text>
+                        <View style={{flex:2}}>
+                            <TabContainer
+                                tabs={["Stats", "Drops"]}
+                                color={this.getColor("contrast")}
+                                secondaryColor={this.getColor("other")}
+                            >
+                                <MobStats data={data.stats} />
+                                <TieredList title="Item" items={data.drops} />
+                            </TabContainer>
+                        </View>
                     </View>
-                    <TabContainer
-                        tabs={["Stats", "Drops"]}
-                        color={this.getColor("contrast")}
-                        secondaryColor={this.getColor("other")}
-                    >
-                        <MobStats data={data.stats} />
-                        <TieredList title="Item" items={data.drops} />
-                    </TabContainer>
+                    </ScrollView>
                 </Parchemin>
             </Background>
         )

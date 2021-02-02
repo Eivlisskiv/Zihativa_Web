@@ -16,7 +16,7 @@ export default class JunctionsInfo extends BaseComponent {
     }
 
     async onPress(junction){
-        const data = await getById("Areas", junction.filePath);
+        const data = await getById("Area", junction.filePath);
         navigate("Area", {data});
     }
 
@@ -29,7 +29,8 @@ export default class JunctionsInfo extends BaseComponent {
                         <HyperLinkText key={obj.destination}
                             style={[this.textStyle(20),{flexWrap:"wrap", flex:1}]}
                             onPress={() => this.onPress(obj) }
-                        >{obj.destination}</HyperLinkText>    
+                            text={obj.destination}
+                        />
                     ) || 
                     <Text style={this.textStyle(20)}>
                     No Junctions</Text>  

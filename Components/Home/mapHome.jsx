@@ -4,7 +4,7 @@ import React from "react"
 
 import Map from "../Map/map"
 
-export default class Home extends BaseComponent {
+export default class MapHome extends BaseComponent {
 
     style = StyleSheet.create({
         background:{

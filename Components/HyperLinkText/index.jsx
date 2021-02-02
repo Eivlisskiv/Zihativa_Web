@@ -5,7 +5,9 @@ export default class HyperLinkText extends React.Component {
 
     style = StyleSheet.create({
         hyperlink: {
-
+            display:"flex",
+            flex:1,
+            flexWrap:"wrap",
         }
     })
 
@@ -18,21 +20,24 @@ export default class HyperLinkText extends React.Component {
             text: props.text,
             
         }
+    }
 
-        this.state.style = {
+    textStyle(){
+        return {
             color: this.state.color, 
-            fontSize: this.state.size
+            fontSize: this.state.size,
+            textDecoration: "underline",
         }
     }
 
     render(){
         return (
             <TouchableOpacity
+                style={this.style.hyperlink}
                 onPress={() => this.props.onPress()}
             >
-                <Text style={this.state.style}>
+                <Text style={this.textStyle()}>
                 {this.state.text}
-                {this.props.children}
                 </Text>
             </TouchableOpacity>
         )

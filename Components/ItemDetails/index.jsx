@@ -8,6 +8,7 @@ import { getItemType } from "../../Utilities/items"
 import ItemStats from './itemStats'
 import ItemRecipe from './itemRecipe'
 import ItemPerk from './itemPerk'
+import { ScrollView } from "react-native-gesture-handler"
 
 export default class ItemDetail extends BaseComponent {
 
@@ -35,7 +36,7 @@ export default class ItemDetail extends BaseComponent {
         return (
             <Background>
                 <Parchemin>
-
+                <ScrollView>
                 <View>
                     <Text style={[this.textStyle(20), this.style.title]}>{data.name}</Text>
                     <View style={{flexDirection:"row"}}>
@@ -57,7 +58,7 @@ export default class ItemDetail extends BaseComponent {
                     <ItemRecipe recipe={data.schematic} />
                     <ItemPerk perk={data.perk} />
                 </TabContainer>
-
+                </ScrollView>
                 </Parchemin>
             </Background>
         )

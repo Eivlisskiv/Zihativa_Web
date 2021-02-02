@@ -8,6 +8,7 @@ export default class Marker extends BaseComponent {
 
     style = StyleSheet.create({
         container:{
+            zIndex:1,
             width:30,
             height:30,
 

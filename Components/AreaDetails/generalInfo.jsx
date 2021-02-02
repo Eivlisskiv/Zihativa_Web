@@ -38,7 +38,7 @@ export default class GeneralInfo extends BaseComponent {
     render(){
         const area = this.state.data;
         return (
-            <View>
+        <View>
             <Text style={this.textStyle(35, 8)}>{area.name}</Text>
             <View style={{margin:5}}>
                 <Text style={this.textStyle(20, 8)}>{getAreaType(area.type)} Level {area.level}</Text>
@@ -47,7 +47,7 @@ export default class GeneralInfo extends BaseComponent {
                 </Text>
             <Text style={this.paragraphStyle()}>{area.description}</Text>
             </View>
-            </View>
+        </View>
         )
     }
 }

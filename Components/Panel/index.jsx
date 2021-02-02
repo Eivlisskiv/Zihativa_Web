@@ -9,6 +9,7 @@ export default class PanPanel extends React.Component {
 
     pan = new Animated.ValueXY();
     panResponder = PanResponder.create({
+      //onStartShouldSetPanResponder: () => !this.panning,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderGrant: () => {
         this.pan.setOffset({
@@ -17,7 +18,6 @@ export default class PanPanel extends React.Component {
         });
       },
       onPanResponderMove: (e, gestureState)=> {
-        //this.tos(this.pan.x);
         this.pan.setValue(this.max(this.pan, gestureState))
       },
       onPanResponderRelease: () => {
@@ -39,7 +39,6 @@ export default class PanPanel extends React.Component {
           this.state.x = (img.width / 2) - (frame.x /2);
           this.state.y = (img.height / 2) - (frame.y /2);
         }
-        //x = 107.25
     }
 
     max(pan, gest){
@@ -49,10 +48,6 @@ export default class PanPanel extends React.Component {
         y: this.clamp(gest.dy, -this.state.y - pan.y._offset,
            this.state.y - pan.y._offset),
       }
-    }
-
-    tos(v){
-      console.log(`v:${v._value}, o:${v._offset}`)
     }
 
     clamp(v, min, max, p){

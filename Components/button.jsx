@@ -17,6 +17,10 @@ export default class Button extends BaseComponent{
 
     buttonStyle(){
         let style = super.buttonStyle(5);
+        if(this.props.pad){
+            style.paddingBottom = this.props.pad;
+            style.paddingHorizontal = this.props.pad;
+        }
         style.flexWrap = "wrap"
         style.alignItems = 'center'
         return style;
@@ -40,7 +44,7 @@ export default class Button extends BaseComponent{
 
     render(){
         return (
-                <View style={[{alignItems:'center'}, this.props.styles]}>
+                <View style={{alignItems:'center', ...this.props.style}}>
                     <TouchableOpacity style={this.buttonStyle()} onPress={this.props.onPress}>
                     {this.renderIcon()}
                     {this.renderText()}

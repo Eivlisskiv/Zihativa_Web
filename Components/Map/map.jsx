@@ -60,6 +60,7 @@ export default class Map extends BaseComponent {
 
     imageStyle(rate = 1){
         return {
+            zIndex:-1,
             width: (this.state.size.width || 50) * rate,
             height: (this.state.size.height || 50) * rate,
         }

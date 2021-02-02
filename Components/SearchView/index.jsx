@@ -1,20 +1,22 @@
 import BaseComponent from "../baseComponent"
 import React from "react"
-import { StyleSheet, View, TextInput, Text } from "react-native"
+import { StyleSheet, View, ScrollView, SafeAreaView, TextInput, Text } from "react-native"
 import Background from "../Background"
 import Parchemin from "../Background/parchemin"
 import DropdownList from "../DropdownList"
 import Button from "../button"
-import { getById } from "../../Query/api_query"
+import { searchContains } from "../../Query/api_query"
 import HyperLinkText from "../HyperLinkText"
 import { navigate } from "../Navigation"
 
 export default class Template extends BaseComponent {
 
     style = StyleSheet.create({
+        container:{
+            flex:1,
+        },
         searchParams:{
             flexWrap: 'wrap',
-            flex:1,
             flexDirection:"row",
             magin: 10,
             padding: 10,
@@ -33,7 +35,7 @@ export default class Template extends BaseComponent {
             backgroundColor: this.getColor("other"),
         },
         searchResult:{
-            flexDirection:"column",
+            flex:1,
             magin: 10,
             padding: 10,
         }
@@ -64,10 +66,10 @@ export default class Template extends BaseComponent {
     async search(){
         try{
             if(!this.searchText) return;
-            const data = await getById(this.selectedTable, this.searchText);
+            const data = await searchContains(this.selectedTable, this.searchText);
             this.setState({searchResult: data ? { 
                     table: this.selectedTable,
-                    items: [data],
+                    items: data,
                 } : null})
             return;
         }catch(e){ }
@@ -83,6 +85,7 @@ export default class Template extends BaseComponent {
     }
 
     renderSearchResults(){
+        console.log(this.state?.searchResult.items.length)
         return this.state?.searchResult?.items.map((o, i) =>
             <HyperLinkText key={i}
                 text={o.name}
@@ -95,7 +98,7 @@ export default class Template extends BaseComponent {
         return (
             <Background>
                 <Parchemin>
-                    <View>
+                    <View style={this.style.container}>
                         <View style={this.style.searchParams}>
                             <View style={{flexDirection:"column"}}>
                                 <Text>Search:</Text>
@@ -120,14 +123,11 @@ export default class Template extends BaseComponent {
                             />
                             <Button style={{}} 
                                 title="Search" onPress={() => this.search()}/>
-                            </View>
-                        <View>
-                        <View style={this.style.searchParams}>
-
                         </View>
                         <View style={this.style.searchResult}>
-                            {this.renderSearchResults()}
-                        </View>
+                            <ScrollView>
+                                {this.renderSearchResults()}
+                            </ScrollView>
                         </View>
                     </View>
                 </Parchemin>

@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StackActions } from '@react-navigation/native';
 
-import Home from "../Home/home.jsx"
+import Map from "../Home/mapHome.jsx"
 import Login from "../Login/login"
 import AreaDetail from "../AreaDetails";
 import ItemDetail from "../ItemDetails";
@@ -47,7 +47,7 @@ export default class MainNavigation extends BaseComponent {
             <Stack.Navigator initialRouteName="Map"
                 headerMode={"none"}>
 
-                <Stack.Screen name="Map" component={Home} />
+                <Stack.Screen name="Map" component={Map} />
                 <Stack.Screen name="Login" component={Login} />
 
                 <Stack.Screen name="Area" component={AreaDetail} />

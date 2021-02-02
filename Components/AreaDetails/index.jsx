@@ -49,6 +49,7 @@ export default class AreaDetail extends BaseComponent {
     render(){
         const area = this.state.data;
         if(!area) return null;
+        console.log(area.junctions, area.loot, area.mobs)
         return (
             <Background>
                 <View style={this.style.container}>

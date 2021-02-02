@@ -47,7 +47,13 @@ export async function post_async(url, headers, body){
 }
 
 export async function getById(controller, id){
-    const url = serverUrl(`api/${controller}/${id.replace(/\\/g, ';')}`)
+    const url = serverUrl(`api/${controller}/id/${id.replace(/\\/g, ';')}`)
+    const response = await get_async(url)
+    return response.data;
+}
+
+export async function searchContains(controller, filter){
+    const url = serverUrl(`api/${controller}/search/${filter}`)
     const response = await get_async(url)
     return response.data;
 }

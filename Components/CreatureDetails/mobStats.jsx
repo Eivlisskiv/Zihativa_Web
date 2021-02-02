@@ -6,11 +6,20 @@ import { charStats as stats, getDamageType } from "../../Utilities/stats"
 export default class MobStats extends BaseComponent {
 
     style = StyleSheet.create({
+        container:{
+            display:"flex", 
+            flexWrap:"wrap", 
+            flexDirection:"row", 
+            width:"100%", 
+            justifyContent:"center", 
+            alignItems:"center"
+        },
         columns:{
             flexDirection:"column",
             margin: 5,
         },
         rows:{
+            display:"flex",
             flexDirection:"row",
             margin: 5,
         },
@@ -53,7 +62,7 @@ export default class MobStats extends BaseComponent {
     render(){
         const data = this.state.data;
         return (
-            <View style={this.style.rows}>
+            <View style={this.style.container}>
                 <View>
                     <Text style={this.style.title}>Main Stats</Text>
                     {this.renderStats(data, stats.main)}

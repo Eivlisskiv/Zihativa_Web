@@ -13,13 +13,7 @@ export default class Parchemin extends React.Component {
             borderColor: theme.other,
             borderWidth: 5,
             borderRadius: 5,
-
-            //justifyContent: 'center',
-            //alignItems: 'center',
-            //flexDirection:"column",
             alignSelf:"center",
-
-            //flexWrap:"wrap",
         },
     })
 
