@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native"
 import Button from "../button";
 import { navigate, back } from "../Navigation"
 import redirect from "../Redirect"
+import SbButton from "./sbButton";
 
 const zihativa = require("../../assets/pfp/zihativa.png")
 const serverIcon = require("../../assets/pfp/server.png")
@@ -54,6 +55,7 @@ export default class Navbar extends BaseComponent {
         return (
             <View style={[this.style.container, {backgroundColor: this.getColor("navbar")}]}>
                 <View style={this.style.container}>
+                    <SbButton />
                     <View style={this.style.left}>
                         <Button
                         title="Back" 
@@ -71,12 +73,12 @@ export default class Navbar extends BaseComponent {
                     <View style={this.style.right}>
                         <Button
                             icon={zihativa} 
-                            pad={"0 0 0 0"}
+                            pad={"0px 0px 0px 0px"}
                             onPress={() => redirect("https://discord.com/oauth2/authorize?client_id=465565429645967398&scope=bot&permissions=379968")}
                         />
                         <Button
                             icon={serverIcon}
-                            pad={"0 0 0 0"}
+                            pad={"0px 0px 0px 0px"}
                             onPress={() => redirect("https://discord.gg/UThAc552xE")}
                         />
                     </View>

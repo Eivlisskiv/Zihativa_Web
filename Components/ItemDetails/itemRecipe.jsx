@@ -32,6 +32,7 @@ export default class ItemRecipe extends BaseComponent {
     render(){
         const data = this.state.recipe;
         if(!data) return <Text>No Recipe, Item may not be crafted.</Text>
+        console.log(data);
         return (
             <View>
                 {slots.map(name => {
@@ -42,7 +43,8 @@ export default class ItemRecipe extends BaseComponent {
                         <Text>{a}x </Text>
                         <HyperLinkText
                             onPress={() => this.onPress(n)}
-                        >{n}</HyperLinkText>
+                            text={n}
+                        />
                     </View>
                     }
                 )}

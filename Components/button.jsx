@@ -1,12 +1,8 @@
 import React from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
 import BaseComponent from './baseComponent'
 
 export default class Button extends BaseComponent{
-
-    style = StyleSheet.create({
-        
-    })
 
     constructor(props){
         super(props)
@@ -18,10 +14,12 @@ export default class Button extends BaseComponent{
     buttonStyle(){
         let style = super.buttonStyle(5);
         if(this.props.pad){
-            style.paddingBottom = this.props.pad;
-            style.paddingHorizontal = this.props.pad;
+            const v = this.props.pad.split(' ')
+            style.paddingtop = v[0];
+            style.paddingRight = v[1];
+            style.paddingBottom = v[2];
+            style.paddingLeft = v[3];
         }
-        style.flexWrap = "wrap"
         style.alignItems = 'center'
         return style;
     }
@@ -44,7 +42,7 @@ export default class Button extends BaseComponent{
 
     render(){
         return (
-                <View style={{alignItems:'center', ...this.props.style}}>
+                <View style={[{alignItems:'center', }, this.props.style]}>
                     <TouchableOpacity style={this.buttonStyle()} onPress={this.props.onPress}>
                     {this.renderIcon()}
                     {this.renderText()}

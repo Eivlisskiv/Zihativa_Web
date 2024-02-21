@@ -84,8 +84,10 @@ export default class BaseComponent extends React.Component{
             marginBottom: margin,
             borderRadius: 5,
             
+            paddingtop: 0,
+            paddingRight: 8, 
             paddingBottom: 3,
-            paddingHorizontal: 8
+            paddingLeft: 8,
         }
     }
 

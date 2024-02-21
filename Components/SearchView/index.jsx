@@ -63,6 +63,11 @@ export default class Template extends BaseComponent {
         });
     }
 
+    onSearch(){
+        this.setState({searchResult:null})
+        this.search();
+    }
+
     async search(){
         try{
             if(!this.searchText) return;
@@ -73,8 +78,6 @@ export default class Template extends BaseComponent {
                 } : null})
             return;
         }catch(e){ }
-
-        this.setState({searchResult:null})
     }
 
     openPage(index){
@@ -85,7 +88,6 @@ export default class Template extends BaseComponent {
     }
 
     renderSearchResults(){
-        console.log(this.state?.searchResult.items.length)
         return this.state?.searchResult?.items.map((o, i) =>
             <HyperLinkText key={i}
                 text={o.name}
@@ -122,7 +124,7 @@ export default class Template extends BaseComponent {
                                 onChangeText={(text) => this.searchText = text}
                             />
                             <Button style={{}} 
-                                title="Search" onPress={() => this.search()}/>
+                                title="Search" onPress={() => this.onSearch()}/>
                         </View>
                         <View style={this.style.searchResult}>
                             <ScrollView>
